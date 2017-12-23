@@ -1,0 +1,72 @@
+<?php
+/*
+Copyright 2016 Clear Creek Baptist Bible College
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+ ************************************************************
+ *
+ * Sonis API integration in PHP
+ *
+ * @author      - Samuel Fonseca <samuel.fonseca@ccbbc.edu>
+ * @company     - Clear Creek Baptist Bible College
+ * @description - Manage Sonis' built-in API functions
+ *
+ ************************************************************
+ */
+
+class student_app
+{
+    public static function app_login( $soc_sec, $pin )
+    {
+        $response = array(
+            array('sonis_ds', '#sonis.ds#'),
+            array('MainDir', '#MainDir#'),
+            array('soc_sec', $soc_sec), # required
+            array('pin', $pin) # required
+        );
+        return $response;
+    }
+
+    public static function create( $first_name, $last_name, $birthdate, $e_mail, $pin, $mi = 'S', $phone = '', $citizen = 1, $zip = '', $mod_stat = 'OA' )
+    {
+        $response = array(
+            array('sonis_ds', '#sonis.ds#'),
+            array('MainDir', '//'),
+            array('first_name', $first_name), # required
+            array('last_name', $last_name), # required
+            array('mi', $mi),
+            array('birthdate', $birthdate), # required
+            array('e_mail', $e_mail), # required
+            array('pin', $pin), # required
+            array('phone', $phone),
+            array('zip', $zip),
+            array('citizen', $citizen),
+            array('mod_stat', $mod_stat),
+        );
+        return $response;
+    }
+
+    public static function search( $firstname = '', $lastname = '', $birthdate = '', $e_mail = '' )
+    {
+        $response = array(
+            array('sonis_ds', '#sonis.ds#'),
+            array('MainDir', '#MainDir#'),
+            array('first_name', $firstname),
+            array('last_name', $lastname),
+            array('birthdate', $birthdate),
+            array('e_mail', $e_mail)
+        );
+        return $response;
+    }
+}
