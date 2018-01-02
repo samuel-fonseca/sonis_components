@@ -2,7 +2,7 @@
 I hope to be able to inform new-comers to Sonis API development, and give some insight on what I have learned about their systems. The beginning can be a bit complicated, but once the you understand the ins and outs of the Sonis API you will be better off and save a lot of debugging time.
 
 ## Installation
-To begin using sonis take the `_/backend/template.config.ini` and replace `user`, `pass`, and `url` to your Sonis server; This should be very simple, and the class will automatically setup the script for you based on those credentials.
+To begin using sonis take the `/template.config.ini` and replace `user`, `pass`, and `url` to your Sonis server; This should be very simple, and the class will automatically setup the script for you based on those credentials.
 
 Save the new file as `config.ini`; make sure to store this file in a safe location - since your server may not prevent `.ini` files from being read in a standard browser.
 
@@ -128,7 +128,7 @@ stdClass Object
 )
 ```
    
-   - errors will return in string (you can use [my error handler](https://github.com/brazucaz/sonis_components/blob/master/parseErrorString.php) to change it into an array)
+   - errors will return in string
 ```
 Error Type - [THE MAIN CAUSE]
 Error Message - [ERROR MESSAGE GOES HERE]
