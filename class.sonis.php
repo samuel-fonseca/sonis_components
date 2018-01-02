@@ -80,7 +80,7 @@ class sonis
     public function __construct( $comp = '', $meth = '', $hasReturnVariable = '', $argumentdata = '' )
     {
         // before doing anything get user config
-        $config = parse_ini_file( 'temp.config.ini' );
+        $config = parse_ini_file( 'config.ini' );
         // setup url
         $this->url  = $config['url'];
 
