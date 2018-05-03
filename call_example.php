@@ -31,7 +31,9 @@ $argumentdata = biographic::namesearch( 'AB1234567' );
 // in place of the actual array; this will be
 // fairly straight forward with a simple SQL
 // understanding.
-$argumentdata = 'SELECT * FROM dbo.table_NAME';
+#################################################
+# $argumentdata = 'SELECT * FROM dbo.table_NAME'; # <--- SQL example
+#################################################
 /* NOTE: If you are using sql, you do not have to
 pass extra parameters, you only need to pass the 
 sql itself. */
@@ -57,4 +59,4 @@ $sonis = new sonis(
 // or string input for argumentdata.
 $call = $sonis->_sonis_api( 'api' /* || 'sql' */ );
 
-
+var_dump($call); # <----- PRINT OUT THE RESULTS
