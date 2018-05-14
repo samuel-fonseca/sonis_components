@@ -214,13 +214,6 @@ class sonis
             case 'sql': $url .= 'soapsql.cfc'; break; # SOAP SQL file
         }
 
-        $opts = array(
-            'ssl' => array(
-                'ciphers' => 'RC4-SHA',
-                'verify_peer' => false,
-                'verify_peer_name' => false
-            )
-        );
         try
         {
             // try to create a SoapClient
@@ -234,8 +227,7 @@ class sonis
                     'cache_wsdl'            => WSDL_CACHE_MEMORY, # cache the results in the memory
                     'verifypeer'            => false,
                     'verifyhost'            => false,
-                    'exceptions'            => 1,
-                    'stream_context'        => stream_context_create($opts)
+                    'exceptions'            => 1
                 )
             );
         }

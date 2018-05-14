@@ -3,10 +3,10 @@ I hope to be able to inform new-comers to Sonis API development, and give some i
 
 ## Compability
 > (PHP 5, PHP 7)
-This class has been tested with both PHP 5.6.0 & 7.1.0
+This class has been tested with both PHP 5.6.0 & 7.1.0 & 7.2.5
 
 ## Installation
-To begin using sonis take the `/template.config.ini` and replace `user`, `pass`, and `url` to your Sonis server; This should be very simple, and the class will automatically setup the script for you based on those credentials.
+To begin using sonis take the `src/template.config.ini` and replace `user`, `pass`, and `url` to your Sonis server; This should be very simple, and the class will automatically setup the script for you based on those credentials.
 
 Save the new file as `config.ini`; make sure to store this file in a safe location - since your server may not prevent `.ini` files from being read in a standard browser.
 
@@ -84,7 +84,6 @@ $call = $client->__soapCall('doAPISomething', # if you are using the API
                                 'hasReturnVariable' => $hasReturnVariable,
                                 'argumentdata' => $argumentdata
                             ));
-?>
 ```
 
 Now that's wonderfully long, and prone to errors; It's also not very replicable. You could easily put this into a function, but the function would not be very mutable, leading to more issues of compability;
@@ -106,7 +105,6 @@ $call = $client->_sonis_api( 'api' );
 For sql use `doSQLSomething` and pass only a string (not an array) as the second parameter
 
 ```php
-<?php
 $agumentdata = "SELECT * FROM some_table";
 
 # make call
@@ -116,7 +114,6 @@ $call = $client->__soapCall('doSQLSomething', # if you are using the SQL
                                 'pass' => $password,
                                 'argumentdata' => $argumentdata
                             ));
-?>
 ```
 
 For SQL queries you would only have to pass a SQL string:

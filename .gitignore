@@ -1,3 +1,2 @@
 # ignore files:
-config.ini
-/csharp/
+/src/config.ini
