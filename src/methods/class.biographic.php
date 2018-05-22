@@ -217,4 +217,25 @@ class biographic
         );
         return $response;
     }
+
+    public static function update_name($soc_sec = '', $mod_stat = '', $first_name = '', $last_name = '', $mi = '', $prefix = '', $suffix = '', $maiden = '', $nickname = '', $other_name = '', $acadstat_cod = 'GS')
+    {
+        $response = array(
+            array('sonis_ds', '#sonis.ds#'),
+            array('MainDir', '#MainDir#'),
+            array('soc_sec', $soc_sec),
+            array('mod_stat', $mod_stat),
+            array('last_name', $last_name),
+            array('first_name', $first_name),
+            array('mi', $mi),
+            array('acadstat_cod', $acadstat_cod),
+            array('prefix', $prefix),
+            array('suffix', $suffix),
+            array('maiden', $maiden),
+            array('nickname', $nickname),
+            array('other_name', $other_name)
+        );
+        
+        return $response;
+    }
 }
