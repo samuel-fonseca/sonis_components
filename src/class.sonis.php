@@ -63,6 +63,11 @@ class sonis
     **/
     protected $url;
 
+    /**
+     * @var bool debug
+     */
+    public $debug = false;
+
 
     /**
      * __construct class to setup call arguments
@@ -196,6 +201,11 @@ class sonis
         }
     }
 
+    public function get_last_request(SoapClient $soap)
+    {
+        return $soap->__getLastRequest();
+    }
+
 
     /**
      * protected _sonis_setup_soap
@@ -297,6 +307,11 @@ class sonis
             return array('error' => 'There was a problem. ' . $e);
         }
 
+        if( $this->debug == true )
+        {
+            print_r(json_encode($this->get_last_request($soap)));
+        }
+        
         return $result; // call is correct
     }
 
@@ -330,7 +345,10 @@ class sonis
         }
         catch(Exception $e)
         {
-            echo 'Oh noe: ', $e->getMessage();
+            return [
+                'error' => true,
+                'message' => 'Error: ', $e->getMessage()
+            ];
         }
 
         $result[ trim( $err_typ ) ]     = trim ( $err_typ_cont );
@@ -411,41 +429,6 @@ class sonis
                 }
             }
 
-        }
-        // if it's not an object, treat it as array.
-        else if ( is_array( $array ) )
-        {
-            // first check for data key
-            if( array_key_exists('data', $array) )
-            {
-                // make sure there's one or more entries
-                if ( $array['data'] >= 1 )
-                {
-                    // split array
-                    array_splice($array['data'], 1);
-                }
-                // reduce array->data to simpler format
-                $call_data = array_reduce( $array['data'], 'array_merge', [] );
-                // combine both arrays
-                $combine = array_combine ( $call['columnList'], $call_data );
-
-                $combine = array_map('trim', $combine );
-                $combine = array_change_key_case($combine, CASE_LOWER);
-            }
-            else
-            {
-                if ( count($array['data']) > 0 ) # check to see if there's anything inside of data object
-                {
-                    foreach( $array['data'] as $column => $data )
-                    {
-                        $combine[] = array_combine( $array['columnList'], $data );
-                    }
-                }
-                else # if there's nothing return the default array
-                {
-                    $combine = $array;
-                }
-            }
         }
         else
         {
@@ -542,7 +525,7 @@ class sonis
                         'sonis_down' => true,
                         'is_error' => 'danger',
                         'code' => $httpResponse,
-                        'message' => 'Unknown SOAP Service Error: ' . $httpResponse
+                        'message' => 'Unknown SOAP Service Connection Error: ' . $httpResponse
                     );
                     break;
             }
